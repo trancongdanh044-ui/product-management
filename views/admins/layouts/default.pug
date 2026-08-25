@@ -1,0 +1,15 @@
+doctype html 
+html 
+  head 
+    title #{pageTitle}
+    link(rel="stylesheet", href="/bootstrap/bootstrap.min.css")
+    link(rel="stylesheet", href="/admins/css/style.css")
+  body
+    include ../partials/header.pug
+    .body 
+      include ../partials/sider.pug
+      .main
+        block main 
+    script(src="/bootstrap/jquery.slim.min.js")
+    script(src="/bootstrap/bootstrap.bundle.min.js")
+    script(src="/admins/js/script.js")
