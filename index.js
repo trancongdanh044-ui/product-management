@@ -11,7 +11,9 @@ const route = require('./routes/clients/index.route');
 const database = require('./configs/database');
 const systemConfig = require('./configs/system');
 
-database.connect();
+const startApp = async () => {
+	await database.connect()
+};
 
 const app = express();
 const port = process.env.PORT;
@@ -37,4 +39,5 @@ app.locals.prefixAdmin = systemConfig.prefixAdmin;
 routeAdmin(app);
 route(app);
 
+startApp();
 module.exports = app
