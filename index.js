@@ -37,4 +37,4 @@ app.locals.prefixAdmin = systemConfig.prefixAdmin;
 routeAdmin(app);
 route(app);
 
-modules.exports = app
+module.exports = app
