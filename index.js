@@ -37,6 +37,4 @@ app.locals.prefixAdmin = systemConfig.prefixAdmin;
 routeAdmin(app);
 route(app);
 
-app.listen(port, () => {
-	console.log(`Example is listening on port ${port}`)
-});
+modules.exports = app
