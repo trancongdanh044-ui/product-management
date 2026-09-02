@@ -54,7 +54,7 @@ module.exports.changeStatus = async (req, res) => {
       _id: id
     }, {
       status: status
-    }); 
+    });
 
     // console.log(result);
     req.flash('success', "Cập nhật trạng thái của sản phẩm thành công!");
@@ -154,9 +154,10 @@ module.exports.createPost = async (req, res) => {
   } else {
     req.body.position = parseInt(req.body.position);
   }
-  if (req.file) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
+  console.log(req.file);
+  // if (req.file) {
+  //   req.body.thumbnail = `/uploads/${req.file.filename}`;
+  // }
   // console.log(req.file);
   // console.log(req.body);
   const product = new Product(req.body);
@@ -189,19 +190,19 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
   // console.log(req.params.id);
   // console.log(req.body);
-  req.body.price = parseInt(req.body.price);
-  req.body.discountPercentage = parseInt(req.body.discountPercentage);
-  req.body.stock = parseInt(req.body.stock);
-  if (req.body.position == "") {
-    const countProduct = await Product.countDocuments();
-    req.body.position = countProduct + 1;
-  } else {
-    req.body.position = parseInt(req.body.position);
-  }
-  if (req.file) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
   try {
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    if (req.body.position == "") {
+      const countProduct = await Product.countDocuments();
+      req.body.position = countProduct + 1;
+    } else {
+      req.body.position = parseInt(req.body.position);
+    }
+    // if (req.file) {
+    //   req.body.thumbnail = `/uploads/${req.file.filename}`;
+    // }
     const id = req.params.id;
     await Product.updateOne({
       _id: id
@@ -214,6 +215,7 @@ module.exports.editPatch = async (req, res) => {
   }
 }
 
+// [GET] /admin/products/detail/:id
 module.exports.detail = async (req, res) => {
   try {
     const id = req.params.id;
